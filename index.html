@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Shahin ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: #0f0f0f;
+  color: white;
+  overflow: hidden;
+}
+
+body::before {
+  content: "";
+  position: absolute;
+  width: 250px;
+  height: 250px;
+  background: radial-gradient(circle, #ff4d6d, transparent);
+  top: 20%;
+  left: 20%;
+  filter: blur(100px);
+}
+
+.card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 350px;
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(15px);
+  border-radius: 20px;
+  padding: 25px;
+  text-align: center;
+  box-shadow: 0 0 30px rgba(255, 0, 80, 0.3);
+}
+
+button {
+  padding: 12px 20px;
+  margin: 10px;
+  border: none;
+  border-radius: 12px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+#yes {
+  background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af);
+  color: white;
+}
+
+#no {
+  background: #222;
+  color: white;
+  position: absolute;
+}
+
+#msg {
+  margin-top: 15px;
+  opacity: 0;
+  transition: 1s;
+}
+
+.heart {
+  position: fixed;
+  top: -10px;
+  animation: fall linear infinite;
+  text-shadow: 0 0 10px rgba(255,255,255,0.8);
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0.9;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+  <h2>Hey Shahin 😊</h2>
+  <p>Do you enjoy talking to me? 💬❤️</p>
+
+  <button id="yes">Yes 💘</button>
+  <button id="no">No 😜</button>
+
+  <p id="msg">Yay 🥰 Let's talk more on WhatsApp ❤️</p>
+</div>
+
+<script>
+
+document.getElementById("yes").onclick = () => {
+  document.getElementById("msg").style.opacity = "1";
+  startHearts();
+
+  setTimeout(() => {
+    window.open("https://wa.me/91XXXXXXXXXX", "_blank");
+  }, 1500);
+};
+
+const noBtn = document.getElementById("no");
+
+function moveNoButton() {
+  noBtn.style.left = Math.random() * 70 + "vw";
+  noBtn.style.top = Math.random() * 70 + "vh";
+}
+
+noBtn.addEventListener("mouseover", moveNoButton);
+noBtn.addEventListener("touchstart", moveNoButton);
+
+document.body.addEventListener("click", (e) => {
+  if (e.target.id !== "no") {
+    startHearts();
+  }
+});
+
+function startHearts() {
+  const hearts = ["❤️","💖","💘","💝","💕","💗"];
+
+  for (let i = 0; i < 50; i++) {
+    let heart = document.createElement("div");
+    heart.classList.add("heart");
+
+    heart.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (Math.random() * 20 + 10) + "px";
+    heart.style.animationDuration = (Math.random() * 2 + 3) + "s";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 4000);
+  }
+}
+</script>
+
+</body>
+</html>
